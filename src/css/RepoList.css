@@ -4,4 +4,9 @@
 
 .repo-list th {
   text-align: left;
+  padding-bottom: 10px;
+}
+
+.repo-list td {
+  text-align: left;
 }
