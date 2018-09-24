@@ -1,12 +1,25 @@
 .repo-list {
+  font-size: 13px;
+  table-layout: fixed;
   width: 100%;
 }
 
 .repo-list th {
-  text-align: left;
+  overflow: hidden;
   padding-bottom: 10px;
+  text-align: left;
 }
 
 .repo-list td {
+  overflow: hidden;
+  padding-bottom: 5px;
   text-align: left;
+}
+
+.repo-action-button {
+  color: #723fed;
+  cursor: pointer;
+  float: right;
+  overflow: hidden;
+  text-decoration: underline;
 }

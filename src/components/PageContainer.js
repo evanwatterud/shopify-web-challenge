@@ -17,13 +17,19 @@ class PageContainer extends React.Component {
     this.setState({ favoriteRepos: [...favoriteRepos, repo] })
   }
 
+  removeFavoriteRepo = (repo) => {
+    const { favoriteRepos } = this.state
+    const newFavoriteRepos = favoriteRepos.filter(favoriteRepo => favoriteRepo !== repo)
+    this.setState({ favoriteRepos: newFavoriteRepos })
+  }
+
   render() {
     const { favoriteRepos } = this.state
 
     return (
       <div className="page-container">
-        <FavoriteSearch addFavoriteRepo={this.addFavoriteRepo} />
-        <FavoriteList repos={favoriteRepos} />
+        <FavoriteSearch favoriteRepos={favoriteRepos} addFavoriteRepo={this.addFavoriteRepo} />
+        <FavoriteList favoriteRepos={favoriteRepos} removeFavoriteRepo={this.removeFavoriteRepo} />
       </div>
     )
   }

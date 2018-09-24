@@ -15,14 +15,15 @@ class FavoriteSearch extends React.Component {
   }
 
   formSubmit = (event, query) => {
-    this.setState({ searchResults: [] })
+    this.setState({ searchResults: [] }) // Clear the search results if a new search comes in
+
     githubApi.searchRepos(query) // Query the github api to search for repos matching a query string
       .then((response) => {
         const operations = []
         response.data.items.forEach((repo) => { // Iterate over the repos returned from the search and get their releases
           operations.push(githubApi.getReleases(repo.owner.login, repo.name))
         })
-        githubApi.getManyReleases(operations)
+        githubApi.getManyReleases(operations) // Wait for the releases in the correct order using axios.all, then update the state with formatted results of the search
           .then((releases) => {
             response.data.items.forEach((repo, index) => {
               const { searchResults } = this.state
@@ -37,14 +38,15 @@ class FavoriteSearch extends React.Component {
           .catch(err => this.setState({ error: err }))
       })
       .catch(err => this.setState({ error: err }))
+
     event.preventDefault()
   }
 
   render() {
     const { searchResults, error } = this.state
-    const { addFavoriteRepo } = this.props
+    const { addFavoriteRepo, favoriteRepos } = this.props
 
-    const repos = searchResults.map(searchResult => <Repo key={searchResult.name} repo={searchResult} actionType="Add" actionFunc={addFavoriteRepo} />)
+    const repos = searchResults.map(searchResult => <Repo key={searchResult.name} repo={searchResult} actionType="Add" actionFunc={addFavoriteRepo} isFavorited={favoriteRepos.indexOf(searchResult) !== -1} />)
 
     return (
       <div className="favorite-search-container">
@@ -59,7 +61,8 @@ class FavoriteSearch extends React.Component {
 }
 
 FavoriteSearch.propTypes = {
-  addFavoriteRepo: PropTypes.func.isRequired
+  addFavoriteRepo: PropTypes.func.isRequired,
+  favoriteRepos: PropTypes.instanceOf(Array).isRequired
 }
 
 export default FavoriteSearch
