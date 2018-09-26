@@ -16,9 +16,15 @@
 }
 
 .favorite-search-form input {
+  border: 2px solid #808081;
   border-radius: 5px;
   flex: .80;
   font-size: 13px;
+  padding-left: 10px;
+}
+
+.favorite-search-form input:focus {
+  outline: none;
 }
 
 .favorite-search-form button {
