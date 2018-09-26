@@ -16,10 +16,35 @@
 }
 
 .favorite-search-form input {
-  flex: .75;
+  border-radius: 5px;
+  flex: .80;
+  font-size: 13px;
 }
 
 .favorite-search-form button {
-  flex: .25;
-  margin-left: 10px;
+  background-color: #723fed;
+  border: 5px solid #723fed;
+  border-radius: 6px;
+  color: white;
+  flex: .20;
+  font-size: 13px;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.favorite-search-form button:disabled {
+  background-color: #865fe2;
+  border-color: #865fe2;
+}
+
+.favorite-search-form button:hover:enabled {
+  background-color: white;
+  color: #723fed;
+  -webkit-transition: color 0.2s linear, background-color 0.2s linear;
+  -moz-transition: color 0.2s linear, background-color 0.2s linear;
+  transition: color 0.2s linear, background-color 0.2s linear;
+}
+
+.favorite-search-form button:focus {
+  outline: none;
 }
