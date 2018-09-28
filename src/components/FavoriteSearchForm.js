@@ -8,7 +8,13 @@ class FavoriteSearchForm extends React.Component {
     this.state = { query: '' }
   }
 
-  handleChange(key, value) { this.setState({ [key]: value }) }
+  handleChange(key, value) {
+    const { clearList } = this.props
+    if (key === 'query' && value === '') {
+      clearList()
+    }
+    this.setState({ [key]: value })
+  }
 
   render() {
     const { formSubmit } = this.props
@@ -30,7 +36,8 @@ class FavoriteSearchForm extends React.Component {
 }
 
 FavoriteSearchForm.propTypes = {
-  formSubmit: PropTypes.func.isRequired
+  formSubmit: PropTypes.func.isRequired,
+  clearList: PropTypes.func.isRequired
 }
 
 export default FavoriteSearchForm

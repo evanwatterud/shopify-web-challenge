@@ -43,6 +43,10 @@ class FavoriteSearch extends React.Component {
     event.preventDefault()
   }
 
+  clearList = () => {
+    this.setState({ searchResults: [] })
+  }
+
   render() {
     const { searchResults, error } = this.state
     const { addFavoriteRepo, favoriteRepos } = this.props
@@ -52,7 +56,7 @@ class FavoriteSearch extends React.Component {
     return (
       <div className="favorite-search-container">
         <div className="panel-layout-container">
-          <FavoriteSearchForm formSubmit={this.formSubmit} />
+          <FavoriteSearchForm formSubmit={this.formSubmit} clearList={this.clearList} />
           <div className="list-wrapper">
             <RepoList repos={repos} />
           </div>
