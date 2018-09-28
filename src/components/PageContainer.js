@@ -12,14 +12,24 @@ class PageContainer extends React.Component {
     this.state = { favoriteRepos: [] }
   }
 
+  componentDidMount() {
+    const repos = JSON.parse(localStorage.getItem('repos'))
+
+    if (repos) {
+      this.setState({ favoriteRepos: repos })
+    }
+  }
+
   addFavoriteRepo = (repo) => {
     const { favoriteRepos } = this.state
+    localStorage.setItem('repos', JSON.stringify([...favoriteRepos, repo]))
     this.setState({ favoriteRepos: [...favoriteRepos, repo] })
   }
 
   removeFavoriteRepo = (repo) => {
     const { favoriteRepos } = this.state
     const newFavoriteRepos = favoriteRepos.filter(favoriteRepo => favoriteRepo !== repo)
+    localStorage.setItem('repos', JSON.stringify([...newFavoriteRepos]))
     this.setState({ favoriteRepos: newFavoriteRepos })
   }
 
