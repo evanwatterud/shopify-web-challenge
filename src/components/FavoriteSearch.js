@@ -47,13 +47,15 @@ class FavoriteSearch extends React.Component {
     const { searchResults, error } = this.state
     const { addFavoriteRepo, favoriteRepos } = this.props
 
-    const repos = searchResults.map(searchResult => <Repo key={searchResult.name} repo={searchResult} actionType="Add" actionFunc={addFavoriteRepo} isFavorited={favoriteRepos.indexOf(searchResult) !== -1} />)
+    const repos = searchResults.map(searchResult => <Repo key={searchResult.name} repo={searchResult} actionType="Add" actionFunc={addFavoriteRepo} isFavorited={favoriteRepos.some(repo => JSON.stringify(repo) === JSON.stringify(searchResult))} />)
 
     return (
       <div className="favorite-search-container">
         <div className="panel-layout-container">
           <FavoriteSearchForm formSubmit={this.formSubmit} />
-          <RepoList repos={repos} />
+          <div className="list-wrapper">
+            <RepoList repos={repos} />
+          </div>
           {error && <span>{error.message}</span>}
         </div>
       </div>

@@ -4,16 +4,20 @@ import PropTypes from 'prop-types'
 import '../css/RepoList.css'
 
 const RepoList = ({ repos }) => (
-  <table className="repo-list">
-    <tbody>
-      <tr>
-        <th>Name</th>
-        <th>Language</th>
-        <th>Latest tag</th>
-      </tr>
-      {repos}
-    </tbody>
-  </table>
+  <div className="repo-list-container">
+    <table className="repo-list">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Language</th>
+          <th>Latest tag</th>
+        </tr>
+      </thead>
+      <tbody>
+        {repos}
+      </tbody>
+    </table>
+  </div>
 )
 
 const Repo = ({

@@ -4,6 +4,13 @@
   width: 100%;
 }
 
+.repo-list-container {
+  display: block;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%
+}
+
 .repo-list th {
   overflow: hidden;
   padding-bottom: 10px;
