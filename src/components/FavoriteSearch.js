@@ -28,6 +28,7 @@ class FavoriteSearch extends React.Component {
             response.data.items.forEach((repo, index) => {
               const { searchResults } = this.state
               const formattedResult = {
+                url: repo.html_url,
                 name: repo.full_name,
                 language: repo.language,
                 latestTag: releases[index].data.length === 0 ? '-' : releases[index].data[0].name

@@ -24,7 +24,9 @@ const Repo = ({
 }) => (
   <React.Fragment>
     <tr className="repo">
-      <td>{repo.name}</td>
+      <td>
+        <a className="repo-link" href={repo.url} target="_blank" rel="noopener noreferrer">{repo.name}</a>
+      </td>
       <td>{repo.language}</td>
       <td>
         {repo.latestTag}
